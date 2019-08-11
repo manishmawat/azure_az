@@ -13,9 +13,9 @@ Or you can move step by step:
 1.	Create resource group
 2.	Create virtual network (vnet) and Subnet
 3.	Create public IP address
-5. 	Create virtual network interface and associate with public IP address and NSG
-4.	Create network security group
-5.	Create Virtual machine
+4. 	Create virtual network interface and associate with public IP address and NSG
+5.	Create network security group
+6.	Create Virtual machine
 
 
 
@@ -33,9 +33,9 @@ az group list -o table
 2) Create virtual network (vnet) and Subnet
 
 az network vnet create \
-	--reource-group "mkmdemo-rg" \
+	--resource-group "mkmdemo-rg" \
 	--name "mkmdemo-vnet-1" \
-	--address-prefix "10.0.0.0/16" \
+	--address-prefix "10.1.0.0/16" \
 	--subnet-name "mkmdemo-subnet-1" \
 	--subnet-prefix "10.1.1.0/24"
 
@@ -67,7 +67,7 @@ az network nic create \
 	--vnet-name "mkmdemo-vnet-1" \
 	--subnet "mkmdemo-subnet-1" \
 	--network-security-group "mkmdemo-win-nsg-1" \
-	--public-ip-address "mkmdemo-pip-1"
+	--public-ip-address "mkmdemo-public-pip-1"
 	
 verify
 
@@ -77,10 +77,10 @@ az network nic list -o table
 
 az vm create \
 	--resource-group "mkmdemo-rg" \
-	--location "central-us" \
+	--location "centralus" \
 	--name "mkmdemo-vm" \
 	--nics "mkmdemo-win-nic-1" \
-	--image "win" \
+	--image "MicrosoftWindowsDesktop:Windows-10:19h1-entn:18362.175.1907130905" \
 	--admin-username "manish" \
 	--admin-password "pass123"
 
